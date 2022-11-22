@@ -1,0 +1,28 @@
+<body>
+    <div class="main">
+        <div id="img2" class="img">
+            <img id="img1" src="../../assets/images/—Pngtree—concept banking logo_4017929.png" alt="">
+        </div>
+        <div class="head">
+            <h3 >My Bank</h3>
+            <h6 >{{aim}}</h6>
+        </div>
+        <div class="form">
+            <!-- <input type="text" name="" id="usn" placeholder="Username"> -->
+            <input (change)="acnoChange($event)" type="input"  [placeholder]="acc" name="name" id='log_accnt' required /> <br>
+            <!-- placeholder in [] for property binding -->
+            <input  (change)="pswdChange($event)"  type="input"  placeholder="Password" name="name" id='log_pass' required />
+            <br>
+            <input id="button" type="button" value="Login" (click)="login()" class="btn btn-primary">
+            <!-- event binding -->
+    
+    
+            <!-- <label for="name" class="form__label">Name</label> -->
+          </div>
+          <div id="foot">
+            <p>Forget password or Sign up</p>
+            
+          </div>
+    </div>
+    <script src="./bank.js"></script>
+</body>
