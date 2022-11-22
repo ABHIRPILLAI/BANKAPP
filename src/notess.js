@@ -44,4 +44,4 @@
 // syntax---(eventName)="functionName($event)";
 
 
-
+//iii)Event binding using template referencing variable---syntax---#variable_name

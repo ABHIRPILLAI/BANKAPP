@@ -9,11 +9,11 @@
         </div>
         <div class="form">
             <!-- <input type="text" name="" id="usn" placeholder="Username"> -->
-            <input (change)="acnoChange($event)" type="input"  [placeholder]="acc" name="name" id='log_accnt' required /> <br>
+            <input #acno type="input"  [placeholder]="acc" name="acno" id='log_accnt' required /> <br>
             <!-- placeholder in [] for property binding -->
-            <input  (change)="pswdChange($event)"  type="input"  placeholder="Password" name="name" id='log_pass' required />
+            <input  #pswd  type="input"  placeholder="Password" name="pswd" id='log_pass' required />
             <br>
-            <input id="button" type="button" value="Login" (click)="login()" class="btn btn-primary">
+            <input id="button" type="button" value="Login" (click)="login(acno,pswd)" class="btn btn-primary">
             <!-- event binding -->
     
     
