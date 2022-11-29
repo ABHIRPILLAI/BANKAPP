@@ -13,10 +13,19 @@
 // index---head/bootstrap
 // app.component----selectorlink
 
+
+
+
+
+
+
+
+
+
 // Databinding----Share data between components---ie,,,,between---ts file---and--htmlfile
 // ts----component
 // html-----veiw
-// 1-----one-way-data-binding(1-direction)
+//=========================== 1-----one-way-data-binding(1-direction)==================
 // html---to---ts//////or//////ts--to--html
 
 
@@ -45,3 +54,87 @@
 
 
 //iii)Event binding using template referencing variable---syntax---#variable_name
+
+
+
+//=========================== 1-----Two-way-data-binding(2-direction)==================
+
+//ie  ts->html and html->ts
+
+//i) ngModel--formsModule in app.module
+//-----syntax--[(ngModel)]="property name"
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+//ANGULAR ROUTING
+// To set path for a component
+//syntax
+//{
+//path:"value",component:class_name
+//}
+
+
+//eg:
+
+//login
+//{
+//path:'',component:LoginComponent
+//},etccccccc.............
+
+//put the above code in app-routing.module.ts
+
+
+/////////////////////////////////////////////////////////////////
+//Dependavce Injection
+
+
+
+//to share datat between two dependend classes
+
+//eg:Router class----navigateby url
+
+//here dependancy injection so inside contructor bcoz it execute first
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+//Angular Services
+
+//to hold redundant data
+
+// ng g s serviceName
+
+
+///////////////////////////////////////////////////////////////
+
+//ANGULAR DIRECTIVES
+//to manipulate DOM
+//a)COmponent Directives
+//b)Structural Directives
+   //1----------*ngFor
+
+
+
+
+
+   /////////////////////////////
+   //Angular forms
+
+
+   //a-----Template driven forms(first design html page but cant do vaidation)
+   //b---Model driven forms(first design model in ts file ,,, easy validation)
+         //--Adavanced Validation
+         //a)Reactive Forms
+            //-form group.array,control
+            //-we can directly add validation via importing Reactive Form Module
+

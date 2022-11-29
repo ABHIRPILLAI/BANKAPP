@@ -1,0 +1,63 @@
+<body>
+    <div class="parent">
+        <div>
+            <h1>Welcome {{user}} </h1>
+            <a routerLink="/transaction">Veiw Transaction History</a>
+            <!-- transaction in routing module -->
+        </div>
+       
+        <div class="child">
+            
+                <div class="main">
+                    <div id="img2" class="img">
+                        <img id="img1" src="../../assets/images/—Pngtree—concept banking logo_4017929.png" alt="">
+                    </div>
+                    <div class="head">
+                        <h3>DEPOSIT MONEY</h3>
+                    </div>
+                    <div class="form">
+                        <input  [(ngModel)]="acno" type="input"  placeholder="Account Number" name="name" id='s_accnt1' required /> <br>
+                        <input  [(ngModel)]="pswd" type="input"  placeholder="Password" name="name4" id='s_pass1' required />
+                        <input  [(ngModel)]="amount" type="text" name="amount" id="s_usn1" placeholder="Amount">
+                        
+                        <br>
+                        <input id="button" type="button" value="Deposit" (click)="deposit()" class="btn btn-primary">
+            
+            
+                      </div>
+                      
+                </div>
+            
+            
+        </div>
+        <div class="child1">
+            
+
+
+                <div class="main">
+                    <div id="img2" class="img">
+                        <img id="img1" src="../../assets/images/—Pngtree—concept banking logo_4017929.png" alt="">
+                    </div>
+                    <div class="head">
+                        <h3>WITHDRAW MONEY</h3>
+                    </div>
+                    <div class="form">
+                        <input  [(ngModel)]="acno1" type="input"  placeholder="Account Number" name="name1" id='s_accnt' required /> <br>
+                        <input  [(ngModel)]="pswd1" type="input"  placeholder="Password" name="name2" id='s_pass' required />
+                        <input  [(ngModel)]="amount1" type="text" name="name3" id="s_usn" placeholder="Amount">
+    
+                        <br>
+                        <input id="button" type="button" value="Withdraw" (click)="withdraw()" class="btn btn-primary">
+                        
+                        
+                      </div>
+                      
+                </div>
+
+
+
+            
+            
+        </div>
+    </div>   
+</body>

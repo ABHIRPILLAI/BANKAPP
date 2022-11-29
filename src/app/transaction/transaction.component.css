@@ -1,0 +1,40 @@
+table{
+
+    color: brown;
+    border-top: 2px solid gray;
+    border-left: 2px solid gray;
+
+    font-size: 25px;
+    margin-left: 570px;
+    margin-top: 100px;
+    padding: 0px;
+    height: 200px;
+    width: 400px;
+    
+
+
+}
+th{
+    border-bottom: 2px solid gray;
+    border-right: 2px solid gray;
+    font-size: 25px;
+    margin-left: 665px;
+    margin-top: 100px;
+    padding: 10px;
+    
+}
+a{
+    margin-left: 680px;
+    font-size: 20px;
+    text-decoration: none;
+
+   
+
+}
+a:hover{
+    background-color: yellow;
+    color: black;
+}
+div{
+    margin-top: 30px;
+}

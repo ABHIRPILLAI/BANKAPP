@@ -1,0 +1,23 @@
+<h1 style="color: blue; text-align: center; ">Transaction History</h1>
+
+
+<table >
+    <thead>
+        <tr >
+            <th>Type</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let t of transaction">
+            <th>{{t.Type}}</th>
+            <th>{{t.amount}}</th>
+            <!-- where amount adn Type is trasaction array inside amount and Type ie the name   -->
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a routerLink="/dashboard">Go back to dashboard</a>
+
+</div>
+
