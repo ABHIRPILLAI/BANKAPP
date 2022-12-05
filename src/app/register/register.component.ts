@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
 //register model
   registerForm=this.fb.group({//group
     uname:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],//array
-    acno:[''],
-    pswd:['']
+    acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
   })
 //control---ts file model link to html file
   constructor(private router:Router, private ds:DataService,private fb:FormBuilder) { }
@@ -38,6 +38,8 @@ export class RegisterComponent implements OnInit {
 
     if(this.registerForm.valid)
     {
+      console.log(this.registerForm.get('uname')?.errors);
+      
     const result=this.ds.register(acno,username,password);
     if(result)
     {

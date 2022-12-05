@@ -7,18 +7,27 @@
             <h3 >My Bank</h3>
             <h6 >{{aim}}</h6>
         </div>
-        <div class="form">
-            <!-- <input type="text" name="" id="usn" placeholder="Username"> -->
-            <input [(ngModel)]="acno" type="input"  [placeholder]="acc" name="acno" id='log_accnt' required /> <br>
-            <!-- placeholder in [] for property binding -->
-            <input  [(ngModel)]="pswd" type="input"  placeholder="Password" name="pswd" id='log_pass' required />
-            <br>
-            <input id="button" type="button" value="Login" (click)="login()" class="btn btn-primary">
-            <!-- event binding -->
+        <form action="" [formGroup]="loginForm">
+            <div class="form">
+                <!-- <input type="text" name="" id="usn" placeholder="Username"> -->
+                <input formControlName="acno" type="input"  [placeholder]="acc" name="acno" id='log_accnt' required /> <br>
+                <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+                    invalid acno
+                </div>
+                <!-- placeholder in [] for property binding -->
+                <input formControlName="pswd" type="input"  placeholder="Password" name="pswd" id='log_pass' required />
+                <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.loginForm.get('pswd')?.errors && this.loginForm.get('pswd')?.touched">
+                    invalid pswd
+                </div>
+                <br>
+                <input id="button" type="button" value="Login" (click)="login()" class="btn btn-primary">
+                <!-- event binding -->
+        
+        
+                <!-- <label for="name" class="form__label">Name</label> -->
+              </div>
+        </form>
     
-    
-            <!-- <label for="name" class="form__label">Name</label> -->
-          </div>
           <div id="foot">
             <a >Forget password </a> or <a routerLink="register" >Sign up</a>
             

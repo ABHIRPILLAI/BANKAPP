@@ -1,12 +1,23 @@
 <body>
+    <input id="button" type="button" value="Logout" style=" position: sticky; top: 20px;   background-color: red; "(click)="logout()"class="btn btn-primary">
+    <input id="button" type="button" value="Delete" style="float: right; background-color: rgb(246, 255, 0); color: black; "(click)="delete()"class="btn btn-primary">
+   
+
+
+    <!-- child component -->
+    <app-delete [item]="acno" (onCancel)="onCancel()"></app-delete>
+    <!-- property binding is used ,,, child event created is oncalcel on left side and right side is function in dashboard.ts -->
+
     <div class="parent">
-        <div>
+        <!-- style1 , ngclass insdide as a atrribute ie when acno recived apply style 1 else null string -->
+        <div id="head11" [ngClass]="acno? 'style1':''">
             <h1>Welcome {{user}} </h1>
             <a routerLink="/transaction">Veiw Transaction History</a>
+            
             <!-- transaction in routing module -->
         </div>
        
-        <div class="child">
+        <div class="child" [ngClass]="acno? 'style1':''">
             
                 <div class="main">
                     <div id="img2" class="img">
@@ -15,22 +26,36 @@
                     <div class="head">
                         <h3>DEPOSIT MONEY</h3>
                     </div>
-                    <div class="form">
-                        <input  [(ngModel)]="acno" type="input"  placeholder="Account Number" name="name" id='s_accnt1' required /> <br>
-                        <input  [(ngModel)]="pswd" type="input"  placeholder="Password" name="name4" id='s_pass1' required />
-                        <input  [(ngModel)]="amount" type="text" name="amount" id="s_usn1" placeholder="Amount">
-                        
-                        <br>
-                        <input id="button" type="button" value="Deposit" (click)="deposit()" class="btn btn-primary">
-            
-            
-                      </div>
+                    <form action="" [formGroup]="depositForm">
+                        <div class="form">
+                            
+                            <input  formControlName="acno" type="input"  placeholder="Account Number" name="name" id='s_accnt1' required /> <br>
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.depositForm.get('acno')?.errors && this.depositForm.get('acno')?.touched">
+                                invalid acno
+                            </div>
+                            <input  formControlName="pswd" type="input"  placeholder="Password" name="name4" id='s_pass1' required />
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.depositForm.get('pswd')?.errors && this.depositForm.get('pswd')?.touched">
+                                invalid pswd
+                            </div>
+                            <input  formControlName="amount" type="text" name="amount" id="s_usn1" placeholder="Amount">
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.depositForm.get('amount')?.errors && this.depositForm.get('amount')?.touched">
+                                invalid amount
+                            </div>
+                            
+                            <br>
+                            <input id="button" type="button" value="Deposit" (click)="deposit()" class="btn btn-primary">
+                
+                
+                          </div>
+                    </form>
+             
                       
                 </div>
+
             
             
         </div>
-        <div class="child1">
+        <div class="child1"  [ngClass]="acno? 'style1':''">
             
 
 
@@ -41,18 +66,35 @@
                     <div class="head">
                         <h3>WITHDRAW MONEY</h3>
                     </div>
-                    <div class="form">
-                        <input  [(ngModel)]="acno1" type="input"  placeholder="Account Number" name="name1" id='s_accnt' required /> <br>
-                        <input  [(ngModel)]="pswd1" type="input"  placeholder="Password" name="name2" id='s_pass' required />
-                        <input  [(ngModel)]="amount1" type="text" name="name3" id="s_usn" placeholder="Amount">
-    
-                        <br>
-                        <input id="button" type="button" value="Withdraw" (click)="withdraw()" class="btn btn-primary">
+                    <form action="" [formGroup]="withdrawForm">
+                        <div class="form">
+                            <input  formControlName="acno1" type="input"  placeholder="Account Number" name="name1" id='s_accnt' required /> <br>
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.withdrawForm.get('acno1')?.errors && this.withdrawForm.get('acno1')?.touched">
+                                invalid acno
+                            </div>
                         
-                        
-                      </div>
+                            <input  formControlName="pswd1" type="input"  placeholder="Password" name="name2" id='s_pass' required />
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.withdrawForm.get('pswd1')?.errors && this.withdrawForm.get('pswd1')?.touched">
+                                invalid pswd
+                            </div>
+                          
+                            <input  formControlName="amount1" type="text" name="name3" id="s_usn" placeholder="Amount">
+                            <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.withdrawForm.get('amount1')?.errors && this.withdrawForm.get('amount1')?.touched">
+                                invalid amount
+                            </div>
+                          
+        
+                            <br>
+                            <input id="button" type="button" value="Withdraw" (click)="withdraw()" class="btn btn-primary">
+                            
+                            
+                          </div>
+                    </form>
+                    
+
                       
                 </div>
+                <h4 style="margin-left: 390px ;">System Date and Time:{{sdate|date:'short'}}</h4>
 
 
 

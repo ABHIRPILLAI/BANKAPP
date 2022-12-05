@@ -9,6 +9,42 @@ currentUser="";///for display current username name in dashboard
 
 currentAcno="";
 
+
+
+
+
+
+constructor(){
+  this.getDetails();
+}
+
+
+saveDetails(){
+  if(this.userDetail){
+    localStorage.setItem('database',JSON.stringify(this.userDetail))
+  }
+  if(this.currentAcno){
+    localStorage.setItem('CurrentAcno',JSON.stringify(this.currentAcno))
+  }
+  if(this.currentUser){
+    localStorage.setItem('CurrentUser',JSON.stringify(this.currentUser))
+  }
+}
+
+getDetails(){
+  if(this.userDetail){
+    this.userDetail=JSON.parse(localStorage.getItem('database')||'')
+  }
+  if(this.currentAcno){
+    this.currentAcno=JSON.parse(localStorage.getItem('CurrentAcno')||'')
+  }
+  if(this.currentUser){
+    this.currentUser=JSON.parse(localStorage.getItem('CurrentUser')||'')
+  }
+}
+
+
+
   userDetail:any=
   {
     1000:{acno:1000,username:'Abhi',password:1000,balance:1000,transaction:[]},
@@ -32,6 +68,7 @@ currentAcno="";
         transaction:[]//also here
       }
       console.log(userDetails);
+      this.saveDetails();
       
       return true;
     }
@@ -48,6 +85,7 @@ currentAcno="";
       if(pswdd==userDetails[acnoo]['password']){
         this.currentUser=userDetails[acnoo]['username']//assign username to the variable
         this.currentAcno=acnoo
+        this.saveDetails();
         return true;
 
       }
@@ -74,8 +112,10 @@ currentAcno="";
           Type:'Credit',
           amount:amount//the Type name and amount name is refered in *ngFor
         })
+       
         console.log(userDetails);//to check whether the data is disolaying
         
+        this.saveDetails();
         return userDetails[acno]['balance']
 
       }
@@ -106,6 +146,7 @@ currentAcno="";
           amount:amount
         })
         console.log(userDetails);
+        this.saveDetails();
         return userDetails[acno]['balance']
         
       }

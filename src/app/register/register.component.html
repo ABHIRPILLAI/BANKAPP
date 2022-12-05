@@ -9,9 +9,19 @@
         <div class="form">
             <form action="" [formGroup]="registerForm" >
                 <input  formControlName="uname" type="text" name="" id="s_usn" placeholder="Username">
-            <input  formControlName="acno" type="input"  placeholder="Account Number" name="name" id='s_accnt' required /> <br>
+                <div  style="color: red; margin-left:60px; text-decoration: underline; "   *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+                    invalid user
+                </div>
+            <input  formControlName="acno" type="input"  placeholder="Account Number" name="name" id='s_accnt' required />
+            <br>
+            <div  style="color: red; margin-left:30px; text-decoration: underline; "   *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched">
+                invalid account number
+            </div>
             <input  formControlName="pswd" type="input"  placeholder="Password" name="name" id='s_pass' required />
             <br>
+            <div  style="color: red; margin-left:50px; text-decoration: underline; "   *ngIf="this.registerForm.get('pswd')?.errors && this.registerForm.get('pswd')?.touched">
+                invalid password
+            </div>
             <input id="button" type="button" value="Register" (click)="register()" class="btn btn-primary">
 
             </form>

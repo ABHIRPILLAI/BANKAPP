@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../Services/data.service';
 
@@ -18,11 +19,15 @@ export class LoginComponent implements OnInit {
   acno="";
   pswd="";
 
- 
+  loginForm=this.fb.group({//group
+    // uname:['',[Validators.required,Validators.pattern('[a-zA-Z]*')]],//array
+    acno:['',[Validators.required,Validators.pattern('[0-9]*')]],
+    pswd:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
+  })
   //(3rd execution)
 //class-collection fo properties/methods
 //userdefined methods  ---//(4rth execution)
-  constructor(private router:Router , private ds:DataService) { }//(1st execution) //here dependancy injection so inside contructor bcoz it execute first
+  constructor(private router:Router , private ds:DataService , private fb:FormBuilder) { }//(1st execution) //here dependancy injection so inside contructor bcoz it execute first
 //contructor---automatically incokes when object is initialized
   ngOnInit(): void {
     //(2st execution)
@@ -68,11 +73,12 @@ export class LoginComponent implements OnInit {
   login()
   {
     // alert('Login Clicked');//event binding
-    var acnoo=this.acno;//1000
-    var pswdd=this.pswd;
+    var acnoo=this.loginForm.value.acno;//1000
+    var pswdd=this.loginForm.value.pswd;
     var userDetails=this.ds.userDetail//also a depedency injection coz this file is in servies and dataservice class under it comes
 
-
+    if(this.loginForm.valid)
+    {
     const result=this.ds.login(acnoo,pswdd)
     if(result){
       alert('Login Successful');
@@ -81,6 +87,9 @@ export class LoginComponent implements OnInit {
     else{
       alert("login failed");
     }
+  }else{
+    alert('invalid form')
+  }
   }
 }
 

@@ -122,6 +122,7 @@
 //a)COmponent Directives
 //b)Structural Directives
    //1----------*ngFor
+   //2-----------*ngIf
 
 
 
@@ -138,3 +139,33 @@
             //-form group.array,control
             //-we can directly add validation via importing Reactive Form Module
 
+//////////////////////////////////////////////////////////////////////////
+
+//localstorage
+// -setItem - To store data
+// -getItem - to retrieve data
+//-removeItem - to remove data
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+//parent child communication
+
+//parent -> child 
+// child -> parent
+
+
+//eg:
+// Dashboard -> Parent
+// delete -> Child
+
+//ngclasss-Adds and removes CSS classes on an HTML element.
+
+// parent to child-- @input
+//child to parent---@output
+
+///////////////////////////////////////////////////////////////////
+
+//ANGULAR PIPES
+//{{ value_expression | date [ : format [ : timezone [ : locale ] ] ] }}
