@@ -32,35 +32,47 @@ export class DashboardComponent implements OnInit {
     amount1:['',[Validators.required,Validators.pattern('[0-9]*')]]
   })
   constructor(private ds:DataService , private fb:FormBuilder , private router:Router) {
-    this.user=this.ds.currentUser//give the value to user and do string interpolattion
+
+    if (localStorage.getItem('currentUser')) {
+      this.user=JSON.parse(localStorage.getItem('currentUser')||"")//give the value to user and do string interpolattion
+    }
     this.sdate=new Date()//for system date and assign to sdate and string interpolation
    }
 
   ngOnInit(): void {
-    if(!localStorage.getItem('CurrentAcno'))
+    if(!localStorage.getItem('currentUser'))
     {
       alert('Please Login')
       this.router.navigateByUrl("");
     }
+    this.user=JSON.parse(localStorage.getItem('currentUser')||"");
+    console.log(this.user);
+    
   }
 
 deposit(){
   var acno=this.depositForm.value.acno;
   var pswd=this.depositForm.value.pswd;
   var amount=this.depositForm.value.amount;
-  const result=this.ds.deposit(acno,pswd,amount)
+this.ds.deposit(acno,pswd,amount).
+subscribe((result:any)=>{
+  alert(result.message)
+},(result)=>{
+  alert(result.error.message)
+}
+)
 
-  if (this.depositForm.valid) {
-    if(result)
-  {
-    alert(`${amount} is credited ... Available balance is ${result}` )
-  }
-  else{
-    alert('Transaction error');
-  }
-  }else{
-    alert('invalid form')
-  }
+  // if (this.depositForm.valid) {
+  //   if(result)
+  // {
+  //   alert(`${amount} is credited ... Available balance is ${result}` )
+  // }
+  // else{
+  //   alert('Transaction error');
+  // }
+  // }else{
+  //   alert('invalid form')
+  // }
   
 }
 
@@ -72,37 +84,55 @@ withdraw()
   var acno=this.withdrawForm.value.acno1;
   var pswd=this.withdrawForm.value.pswd1;
   var amount=this.withdrawForm.value.amount1;
-  const result1=this.ds.withdraw(acno,pswd,amount)
+ this.ds.withdraw(acno,pswd,amount).subscribe((result:any)=>{
+  alert(result.message)
+},(result)=>{
+  alert(result.error.message)
+}
+)
 
 
-  if (this.withdrawForm.valid) {
-    if(result1)
-  {
-    alert(`${amount} is debited ... Available balance is ${result1}` )
-  }
-  else{
-    alert('Transaction error');
-  }
-  }else{
-    alert('Invalid form')
-  }
+  // if (this.withdrawForm.valid) {
+  // //   if(result1)
+  // // {
+  // //   alert(`${amount} is debited ... Available balance is ${result1}` )
+  // // }
+  // // else{
+  // //   alert('Transaction error');
+  // // }
+  // // }else{
+  // //   alert('Invalid form')
+  // }
   
 }
 logout(){
   //remove username and acno
 
-  localStorage.removeItem('CurrentAcno')
-  localStorage.removeItem('CurrentUser')
+  localStorage.removeItem('currentAcno')
+  localStorage.removeItem('currentUser')
+
   this.router.navigateByUrl('')
 }
 delete()
 {
   // alert('Delete clicked')
-  this.acno=JSON.parse(localStorage.getItem('CurrentAcno')||'')
+  this.acno=JSON.parse(localStorage.getItem('currentAcno')||'')
   
 }
 onCancel()
 {
   this.acno="";
+}
+onDelete(event:any){
+  // alert(event);
+  this.ds.deleteAcc(event)
+  .subscribe((result:any)=>{
+    alert(result.message)
+    this.logout()
+    // this.router.navigateByUrl("");
+  },result=>{
+    alert(result.error.message)
+  }
+  )
 }
 }

@@ -5,7 +5,7 @@
 
 
     <!-- child component -->
-    <app-delete [item]="acno" (onCancel)="onCancel()"></app-delete>
+    <app-delete [item]="acno" (onCancel)="onCancel()"  (onDelete)="onDelete($event)"></app-delete>
     <!-- property binding is used ,,, child event created is oncalcel on left side and right side is function in dashboard.ts -->
 
     <div class="parent">
@@ -94,7 +94,7 @@
 
                       
                 </div>
-                <h4 style="margin-left: 390px ;">System Date and Time:{{sdate|date:'short'}}</h4>
+                <h4 style="margin-left: 390px ; color: red;">System Date and Time:{{sdate|date:'short'}}</h4>
 
 
 

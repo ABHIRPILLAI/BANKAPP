@@ -75,21 +75,38 @@ export class LoginComponent implements OnInit {
     // alert('Login Clicked');//event binding
     var acnoo=this.loginForm.value.acno;//1000
     var pswdd=this.loginForm.value.pswd;
-    var userDetails=this.ds.userDetail//also a depedency injection coz this file is in servies and dataservice class under it comes
+    // var userDetails=this.ds.userDetail//also a depedency injection coz this file is in servies and dataservice class under it comes
 
     if(this.loginForm.valid)
     {
-    const result=this.ds.login(acnoo,pswdd)
-    if(result){
-      alert('Login Successful');
+    this.ds.login(acnoo,pswdd)
+    .subscribe((result:any)=>
+    {
+      localStorage.setItem('currentUser',JSON.stringify(result.currentUser))
+      localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno))
+      localStorage.setItem('token',JSON.stringify(result.token))
+
+      alert(result.message);
       this.router.navigateByUrl('dashboard')
+
+    },
+    result=>{
+      alert(result.error.message)
     }
-    else{
-      alert("login failed");
-    }
-  }else{
-    alert('invalid form')
+    )
   }
+  
+
+  //   if(result){
+  //     alert('Login Successful');
+  //     this.router.navigateByUrl('dashboard')
+  //   }
+    // else{
+    //   alert("login failed");
+    // }
+  // }else{
+  //   alert('invalid form')
+  
   }
 }
 
